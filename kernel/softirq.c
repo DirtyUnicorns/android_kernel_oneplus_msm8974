@@ -195,10 +195,10 @@ void local_bh_enable_ip(unsigned long ip)
 EXPORT_SYMBOL(local_bh_enable_ip);
 
 /*
- * We restart softirq processing for at most 2 ms,
+ * We restart softirq processing for at most 2 ms, 
  * and if need_resched() is not set.
  *
- * These limits have been established via experimentation.
+ * These limits have been established via experimentation. 
  * The two things to balance is latency against fairness -
  * we want to handle softirqs as soon as possible, but they
  * should not be able to lock up the box.
