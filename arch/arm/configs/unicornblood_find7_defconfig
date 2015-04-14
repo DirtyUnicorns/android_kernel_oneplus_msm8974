@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm 3.4.106 Kernel Configuration
+# Linux/arm 3.4.107 Kernel Configuration
 #
 
 CONFIG_LOCALVERSION="-unicornblood-kernel-Find7-lp"
