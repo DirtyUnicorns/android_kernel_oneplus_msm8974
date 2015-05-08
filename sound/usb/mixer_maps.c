@@ -421,15 +421,8 @@ static struct usbmix_ctl_map usbmix_ctl_maps[] = {
 		.ignore_ctl_error = 1,
 	},
 	{
-<<<<<<< HEAD
 		.id = USB_ID(0x200c, 0x1018),
 		.map = ebox44_map,
-	},
-	{
-=======
->>>>>>> 4af9572... ALSA: usb-audio: work around KEF X300A firmware bug
-		.id = USB_ID(0x27ac, 0x1000),
-		.map = kef_x300a_map,
 	},
 	{ 0 } /* terminator */
 };
