@@ -3,7 +3,7 @@
 # Linux/arm 3.4.107 Kernel Configuration
 #
 
-CONFIG_LOCALVERSION="-unicornblood-kernel-bacon-lp"
+CONFIG_LOCALVERSION="-unicornblood-bacon"
 CONFIG_ARM=y
 CONFIG_ARM_HAS_SG_CHAIN=y
 CONFIG_SYS_SUPPORTS_APM_EMULATION=y

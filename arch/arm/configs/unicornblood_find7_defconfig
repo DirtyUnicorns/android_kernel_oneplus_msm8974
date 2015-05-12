@@ -3,7 +3,7 @@
 # Linux/arm 3.4.107 Kernel Configuration
 #
 
-CONFIG_LOCALVERSION="-unicornblood-kernel-Find7-lp"
+CONFIG_LOCALVERSION="-unicornblood-find7"
 CONFIG_ARM=y
 CONFIG_ARM_HAS_SG_CHAIN=y
 CONFIG_SYS_SUPPORTS_APM_EMULATION=y
