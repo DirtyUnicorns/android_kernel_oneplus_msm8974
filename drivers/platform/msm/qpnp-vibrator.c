@@ -39,7 +39,6 @@ struct qpnp_vib {
 	struct spmi_device *spmi;
 	struct hrtimer vib_timer;
 	struct timed_output_dev timed_dev;
-	struct work_struct work;
 
 	u8  reg_vtg_ctl;
 	u8  reg_en_ctl;
@@ -254,13 +253,6 @@ retry:
 	spin_unlock_irqrestore(&vib->lock, flags);
 }
 
-static void qpnp_vib_update(struct work_struct *work)
-{
-	struct qpnp_vib *vib = container_of(work, struct qpnp_vib,
-					 work);
-	qpnp_vib_set(vib, vib->state);
-}
-
 static int qpnp_vib_get_time(struct timed_output_dev *dev)
 {
 	struct qpnp_vib *vib = container_of(dev, struct qpnp_vib,
@@ -295,7 +287,6 @@ static int qpnp_vibrator_suspend(struct device *dev)
 	struct qpnp_vib *vib = dev_get_drvdata(dev);
 
 	hrtimer_cancel(&vib->vib_timer);
-	cancel_work_sync(&vib->work);
 	/* turn-off vibrator */
 	qpnp_vib_set(vib, 0);
 
@@ -382,7 +373,6 @@ static int __devinit qpnp_vibrator_probe(struct spmi_device *spmi)
 	vib->reg_en_ctl = val;
 
 	spin_lock_init(&vib->lock);
-	INIT_WORK(&vib->work, qpnp_vib_update);
 
 	hrtimer_init(&vib->vib_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
 	vib->vib_timer.function = qpnp_vib_timer_func;
@@ -410,7 +400,6 @@ static int  __devexit qpnp_vibrator_remove(struct spmi_device *spmi)
 {
 	struct qpnp_vib *vib = dev_get_drvdata(&spmi->dev);
 
-	cancel_work_sync(&vib->work);
 	hrtimer_cancel(&vib->vib_timer);
 	timed_output_dev_unregister(&vib->timed_dev);
 
